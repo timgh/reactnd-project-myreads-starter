@@ -57,6 +57,11 @@ class SearchPage extends React.Component {
     }
   }
 
+  updateBook = (book, newShelf) => {
+    this.setState({ books: this.state.books.map((b) => b.id !== book.id ? b : book) })
+    this.props.updateBook(book, newShelf)
+  } 
+
   render() {
     return (
       <div className="search-books">
@@ -68,7 +73,7 @@ class SearchPage extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BookList books={this.state.books} updateBook={this.props.updateBook}/>
+          <BookList books={this.state.books} updateBook={this.updateBook}/>
         </div>
       </div>
     )
